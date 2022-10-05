@@ -23,6 +23,9 @@ let products = [
   { name: "dog treats", price: "$8", description: "go fetch!", UPC: "3gh5444" },
 ];
 
+let cart = [];
+let itemsInCart = 0;
+
 while (true) {
   console.log("==========================\n The commands are: ", commands);
 
@@ -34,9 +37,16 @@ while (true) {
       console.log("      - " + product.name);
     });
   } else if (theCommand === "show product") {
-    console.log("Poduct details GO HERE");
-  } else if (theCommand === "add the cart") {
-    console.log("added to cart");
+    const theName = rl.question("Which product would you like to see?: ");
+    const theProduct = products.find((p) => p.name === theName);
+    console.log("The product details are \n", theProduct);
+  } else if (theCommand === "add to cart") {
+    const theName = rl.question("Which product would you like to add?: ");
+    const theProduct = products.find((p) => p.name == theName);
+    cart.push(theProduct);
+    console.log(cart);
+    itemsInCart = cart.length;
+    console.log("Added! You have " + itemsInCart + " items in your cart!");
   } else {
     console.log(`Invalid command: ${theCommand}`);
   }
